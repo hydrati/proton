@@ -1,0 +1,25 @@
+{
+  "name": "@hydrati/proton",
+  "version": "2.0.0",
+  "description": "Simple Reactive Library",
+  "scripts": {
+    "build": "tsup",
+    "coverage": "vitest run --coverage",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.0",
+    "prettier": "^2.7.1",
+    "tsup": "^6.2.3",
+    "typescript": "^4.8.4",
+    "vitest": "^0.24.3"
+  }
+}

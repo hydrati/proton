@@ -1,0 +1,3 @@
+# ESLint Ignore
+dist/**/*
+*.config.*
