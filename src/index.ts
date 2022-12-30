@@ -176,7 +176,7 @@ export function useSignal<T>(
     (x) => {
       let newValue: T
 
-      if (typeof x === 'function') {
+      if (typeof value !== 'function' && typeof x === 'function') {
         newValue = x(value)
       } else {
         newValue = x as T
