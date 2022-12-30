@@ -6,7 +6,9 @@ export type EffectTrackCallback = (
   e: ReactiveEffect,
   target: ReactiveTarget
 ) => void
+
 export type EffectCleanupCallback = (e: ReactiveEffect) => void
+
 export type EffectTriggerCallback = (
   e: ReactiveEffect,
   target: ReactiveTarget,
@@ -52,6 +54,7 @@ function createEffect(
 ): ReactiveEffect {
   const e: ReactiveEffect = (() => {
     if (e.stopped) return
+
     cleanup(e)
     activeScope?.effects.add(e)
     activeEffect = e
@@ -103,6 +106,7 @@ function getBucket(target: any): EffectBucket {
 
 // eslint-disable-next-line prefer-const
 let shouldTrack = true
+
 let activeEffect: ReactiveEffect | null
 const effectStack: ReactiveEffect[] = []
 
@@ -143,6 +147,8 @@ export function trigger(target: any, op = 0) {
   bucket.forEach((v) => {
     if (v !== activeEffect) runEffect.add(v)
   })
+
+  bucket.clear()
 
   runEffect.forEach((v) => {
     v.onTrigger?.(v, target, op)
