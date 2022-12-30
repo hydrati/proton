@@ -40,13 +40,6 @@ export interface EffectOptions extends EffectEventCallbacks {
   scheduler?: () => void
 }
 
-export function useEffect(
-  f: () => void,
-  options?: Omit<EffectOptions, 'lazy'>
-): DisposeFn {
-  return () => stop(effect(f, options))
-}
-
 function createEffect(
   f: () => void,
   scheduler: EffectScheduler = defaultSchedule,
@@ -85,7 +78,7 @@ export function stop(e: ReactiveEffect): void {
   }
 }
 
-export function effect(
+export function useEffect(
   f: () => void,
   { lazy = false, scheduler, ...on }: EffectOptions = {}
 ): ReactiveEffect {
@@ -212,7 +205,7 @@ export function useMemo<T>(f: () => T): Memo<T> {
   let dirty = true
 
   const m = createMarker()
-  const e = effect(() => (value = f()), {
+  const e = useEffect(() => (value = f()), {
     lazy: true,
     scheduler: () => {
       if (!dirty) {
